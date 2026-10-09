@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu gốc (App Menu) -->
+    <menuitem id="menu_purchase_request_root"
+              name="Yêu cầu mua hàng"
+              web_icon="custom_purchase_request,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Menu con quản lý yêu cầu (Thêm sửa xóa đầy đủ) -->
+    <menuitem id="menu_purchase_request"
+              name="Danh sách yêu cầu"
+              parent="menu_purchase_request_root"
+              action="action_purchase_request"
+              sequence="10"/>
+
+    <!-- Menu con quản lý chi tiết (Không cho phép thêm sửa xóa) -->
+    <menuitem id="menu_purchase_request_line"
+              name="Chi tiết yêu cầu"
+              parent="menu_purchase_request_root"
+              action="action_purchase_request_line"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 1. BẮT BUỘC KHAI BÁO RECORD NÀY ĐẦU FILE (THIẾU CÁI NÀY SẼ BÁO LỖI PARSEERROR) -->
+        <record id="module_category_purchase_request" model="ir.module.category">
+            <field name="name">Yêu cầu mua hàng</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- 2. Nhóm Người dùng -->
+        <record id="group_purchase_request_user" model="res.groups">
+            <field name="name">Người dùng</field>
+            <field name="category_id" ref="module_category_purchase_request"/>
+        </record>
+
+        <!-- 3. Nhóm Quản lý -->
+        <record id="group_purchase_request_manager" model="res.groups">
+            <field name="name">Quản lý</field>
+            <field name="category_id" ref="module_category_purchase_request"/>
+            <field name="implied_ids" eval="[(4, ref('group_purchase_request_user'))]"/>
+        </record>
+    </data>
+</odoo>

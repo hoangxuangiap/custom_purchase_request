@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_request_reject_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.request.reject.wizard.form</field>
+        <field name="model">purchase.request.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Nhập lý do từ chối">
+                <group>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button name="action_reject" string="Xác nhận từ chối" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_request_reject_wizard" model="ir.actions.act_window">
+        <field name="name">Từ chối yêu cầu</field>
+        <field name="res_model">purchase.request.reject.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

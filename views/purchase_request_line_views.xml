@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_request_line_tree" model="ir.ui.view">
+        <field name="name">purchase.request.line.list</field>
+        <field name="model">purchase.request.line</field>
+        <field name="arch" type="xml">
+            <list string="Chi tiết yêu cầu mua hàng" create="false" edit="false" delete="false">
+                <field name="request_id"/>
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="qty"/>
+                <field name="uom_id"/>
+                <field name="price_unit"/>
+                <field name="qty_approve"/>
+                <field name="total"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_purchase_request_line" model="ir.actions.act_window">
+        <field name="name">Chi tiết yêu cầu</field>
+        <field name="res_model">purchase.request.line</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

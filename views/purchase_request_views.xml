@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_request_form" model="ir.ui.view">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <form string="Yêu cầu mua hàng">
+                <header>
+                    <button name="action_submit" string="Gửi yêu cầu" type="object" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_approve" string="Phê duyệt" type="object" invisible="state != 'wait'" class="oe_highlight"/>
+                    <button name="action_reject_wizard" string="Từ chối" type="object" invisible="state != 'wait'" class="btn-danger"/>
+                    <button name="action_reset_draft" string="Quay lại dự thảo" type="object" invisible="state != 'wait'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,wait,approved,rejected,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <field name="request_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field name="approver_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field name="department_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field name="date"/>
+                        <field name="origin"/>
+                        <field name="description"/>
+                        <field name="reject_reason" invisible="state != 'rejected'"/>
+                    </group>
+                    <notebook>
+                        <page string="Sản phẩm">
+                            <field name="request_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id" readonly="parent.state != 'draft'"/>
+                                    <field name="name" readonly="parent.state != 'draft'"/>
+                                    <field name="qty" readonly="parent.state != 'draft'"/>
+                                    <field name="uom_id" readonly="parent.state != 'draft'"/>
+                                    <field name="price_unit" readonly="parent.state != 'draft'"/>
+                                    <field name="qty_approve" readonly="parent.state != 'wait'"/>
+                                    <field name="total" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="total_qty"/>
+                        <field name="total_amount" class="oe_subtotal_footer_separator"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_request_tree" model="ir.ui.view">
+        <field name="name">purchase.request.list</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <list string="Yêu cầu mua hàng">
+                <field name="name"/>
+                <field name="request_id"/>
+                <field name="department_id"/>
+                <field name="date"/>
+                <field name="total_amount"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_purchase_request" model="ir.actions.act_window">
+        <field name="name">Yêu cầu mua hàng</field>
+        <field name="res_model">purchase.request</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
